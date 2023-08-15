@@ -16,13 +16,19 @@ def xigua_download(url):
         # 按照字符串 "video_4" 进行切割
         flag = 0
         is_4k = 0
+        is_720p = 0
         if content.find("video_5") != -1:
                 video_parts = content.split("video_5")
                 print("4K")
                 is_4k = 1
         else :
-            video_parts = content.split("video_4")
-            print("1080P")
+            if content.find("video_4") != -1 :
+                video_parts = content.split("video_4")
+                print("1080P")
+            else :
+                video_parts = content.split("video_3")
+                print("720P")
+                is_720p = 1
         while flag == 0 :
             
             response = requests.get(url)
@@ -31,8 +37,11 @@ def xigua_download(url):
                 video_parts = content.split("video_5")
                 is_4k = 1
             else :
-                video_parts = content.split("video_4")
-        
+                if content.find("video_4") != -1 :
+                    video_parts = content.split("video_4")
+                else :
+                    video_parts = content.split("video_3")
+                    is_720p = 1       
             for part in video_parts[1:]:
                 brace_count = 0
                 json_content = ""
