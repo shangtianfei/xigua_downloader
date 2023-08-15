@@ -81,6 +81,7 @@ def xigua_download(url):
                                         is_hevc = 1
                                         if test.status_code == 200:
                                                 print("HEVC")
+                                                print(title)
                                                 print("Decoded Main URL:", decoded_url)
                                                 soup = BeautifulSoup(content, 'html.parser')
                                                 title = soup.title.string.strip()
@@ -116,6 +117,7 @@ def xigua_download(url):
                                 test = requests.head(decoded_url)
                                 if test.status_code == 200:
                                     print("AVC")
+                                    print(title)
                                     print("Decoded Main URL:", decoded_url)
                                     soup = BeautifulSoup(content, 'html.parser')
                                     title = soup.title.string.strip()
