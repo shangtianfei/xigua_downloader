@@ -80,11 +80,11 @@ def xigua_download(url):
                                         test = requests.head(decoded_url)
                                         is_hevc = 1
                                         if test.status_code == 200:
+                                                soup = BeautifulSoup(content, 'html.parser')
+                                                title = soup.title.string.strip()
                                                 print("HEVC")
                                                 print(title)
                                                 print("Decoded Main URL:", decoded_url)
-                                                soup = BeautifulSoup(content, 'html.parser')
-                                                title = soup.title.string.strip()
                                                 os.system("curl  " + "\"" + decoded_url + "\"" + " -o " + "\"" + title  + ".mp4" + "\"")
                                                 flag = 1
                                                 break
@@ -116,11 +116,11 @@ def xigua_download(url):
                                 decoded_url = base64.b64decode(main_url).decode('utf-8')
                                 test = requests.head(decoded_url)
                                 if test.status_code == 200:
+                                    soup = BeautifulSoup(content, 'html.parser')
+                                    title = soup.title.string.strip()
                                     print("AVC")
                                     print(title)
                                     print("Decoded Main URL:", decoded_url)
-                                    soup = BeautifulSoup(content, 'html.parser')
-                                    title = soup.title.string.strip()
                                     os.system("curl  " + "\"" + decoded_url + "\"" + " -o " + "\"" + title  + ".mp4" + "\"")
                                     flag = 1
                                     break
